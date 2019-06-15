@@ -1,5 +1,16 @@
 #! /usr/bin/python3
 
+# Move plays into seperate classes which extend a gemeric Play class as follows:
+# class Play has vet argument methods, automatic error raising, --help functionality, --scenes listing
+
+# ^^ Same thing with each scene, --help
+
+# For example, I should be able to run the following commands on any scene/play
+
+# play trivia --help
+# play git --scenes
+# play git started --help
+
 import sys
 import os
 import subprocess
@@ -96,7 +107,7 @@ class Plays:
             os.system(f"mkdir {repo}")
 
             gitignore = '''
-*.private
+*.private.*
 *.private/
 .vscode
             '''
@@ -157,7 +168,17 @@ class Plays:
         os.system("sudo dnf -y update")
         os.system("sudo dnf -y upgrade")
     
-    # def
+    def help(self, args):
+        object_methods = [method_name for method_name in dir(self)
+                  if callable(getattr(self, method_name))
+                  and "__" not in method_name]
+        
+        print("play is a tool to call different useful/fun scripts that I wrote\nIt contains several 'plays', listed below:\n")
+
+        for method in object_methods:
+            print(f"->{method}")
+
+        print("\nEach play has different scenes. A more comprehensive help on a play and its scenes can be found with\nplay <play> --help")
 
     
 

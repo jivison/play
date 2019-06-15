@@ -1,4 +1,4 @@
 
-*.private
+*.private.*
 *.private/
-            
+__pycache__/            
