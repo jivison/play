@@ -127,7 +127,7 @@ class Plays:
             os.system(f"cd {repo}; git add readme.md")
 
             os.system(f"cd {repo}; git commit -m 'initial commit'")
-            os.system(f"cd {repo}; git remote add origin https://github.com/MatteCatte/{repo}.git")
+            os.system(f"cd {repo}; git remote add origin git@github.com:MatteCatte/{repo}.git")
             os.system(f"cd {repo}; git push -u origin master")
 
         else:
@@ -180,7 +180,12 @@ class Plays:
 
         print("\nEach play has different scenes. A more comprehensive help on a play and its scenes can be found with\nplay <play> --help")
 
-    
+    def quickChangeHelp(self, args):
+        homePath = os.environ("HOME")
+        
+        theme = args[1]
+
+        os.system(f"node {homePath}/play/themechange.js {theme}")
 
 
 try:
